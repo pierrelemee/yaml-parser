@@ -30,6 +30,32 @@ public class Node implements Iterable<Node> {
         this.children.add(child);
     }
 
+    public boolean hasChild(String name) {
+        for(Node child: this.children) {
+            if(child.name.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Node getChild(String name) {
+        for(Node child: this.children) {
+            if(child.name.equals(name)) {
+                return child;
+            }
+        }
+        return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
     public Iterator<Node> iterator() {
         return this.children.iterator();
     }
