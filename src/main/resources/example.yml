@@ -1,0 +1,21 @@
+connextions:
+    database:
+        default:
+            scheme: postgres
+            host: localhost
+            username: user
+            password: secret
+            dbname: main
+        development:
+            scheme:  postgres
+            host: localhost
+            username: developer
+            password: secret
+            dbname: dev
+        test:
+            scheme: sqlite
+            host: /tmp/dbtest.sqlite
+
+author:
+    firstname: Pierre
+    lastname: Lemée
