@@ -8,6 +8,8 @@ import java.util.function.Consumer;
 
 public class Node implements Iterable<Node> {
 
+    private static final Character NAME_SEPARATOR = '.';
+
     protected String name;
     protected String value;
     protected List<Node> children;
@@ -39,10 +41,26 @@ public class Node implements Iterable<Node> {
         return false;
     }
 
+    /**
+     * Find child node by path.
+     * Paths are defined by the combination of dots separated names.
+     * @param path String
+     * @return Node the children node
+     */
+    public Node get(String path) {
+        if (path.indexOf('.') != -1) {
+            return this.getChild(path.substring(0, path.indexOf('.'))).get(path.substring(path.indexOf(NAME_SEPARATOR) + 1));
+        } else {
+            return this.getChild(path);
+        }
+    }
+
     public Node getChild(String name) {
-        for(Node child: this.children) {
-            if(child.name.equals(name)) {
-                return child;
+        if (!name.equals("")) {
+            for (Node child : this.children) {
+                if (child.name.equals(name)) {
+                    return child;
+                }
             }
         }
         return null;
