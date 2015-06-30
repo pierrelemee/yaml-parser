@@ -48,8 +48,8 @@ public class Node implements Iterable<Node> {
      * @return Node the children node
      */
     public Node get(String path) {
-        if (path.indexOf('.') != -1) {
-            return this.getChild(path.substring(0, path.indexOf('.'))).get(path.substring(path.indexOf(NAME_SEPARATOR) + 1));
+        if (path.indexOf(NAME_SEPARATOR) != -1) {
+            return this.getChild(path.substring(0, path.indexOf(NAME_SEPARATOR))).get(path.substring(path.indexOf(NAME_SEPARATOR) + 1));
         } else {
             return this.getChild(path);
         }

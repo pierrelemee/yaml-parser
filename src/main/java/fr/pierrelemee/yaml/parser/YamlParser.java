@@ -16,16 +16,22 @@ public class YamlParser {
         int cursor;
         char character;
         int nbSpaces = 0;
-        StringBuffer nameBuffer = new StringBuffer();
-        StringBuffer valueBuffer = new StringBuffer();
+        StringBuilder nameBuffer = new StringBuilder();
+        StringBuilder valueBuffer = new StringBuilder();
         int width = 4;
         boolean colonFound = false;
         while ((cursor = reader.read()) != -1) {
             character = (char) cursor;
             switch(character) {
                 case ' ':
-                    if(nameBuffer.length() == 0) {
-                        nbSpaces++;
+                    if (!colonFound) {
+                        if (nameBuffer.length() == 0) {
+                            nbSpaces++;
+                        }
+                    } else {
+                        if (valueBuffer.length() > 0) {
+                            valueBuffer.append(character);
+                        }
                     }
                     break;
                 case '\n':
